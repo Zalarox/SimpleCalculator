@@ -92,14 +92,6 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Find Factorial"
-        android:id="@+id/checkBox3"
-        android:layout_below="@+id/cbDifference"
-        android:layout_alignLeft="@+id/cbDifference" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Limit Precision"
         android:id="@+id/cbLimitPrecision"
         android:layout_below="@+id/checkBox"
@@ -116,5 +108,33 @@
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/checkBox"
         android:editable="false" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_above="@+id/btnSubmit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/cbDifference" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Result"
+        android:id="@+id/textView3"
+        android:layout_above="@+id/editText"
+        android:layout_centerHorizontal="true" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Round off to integer?"
+        android:id="@+id/switch1"
+        android:layout_below="@+id/tbxPrecision"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
 
 </RelativeLayout>
