@@ -7,7 +7,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
@@ -22,23 +24,49 @@ public class MainActivity extends Activity {
     }
 
     public void onClick_btnSubmit(View view) {
-        Button btn;
         float result=0;
         EditText num1 = (EditText) findViewById(R.id.numOne);
         EditText num2 = (EditText) findViewById(R.id.numTwo);
-        btn = (Button) findViewById(R.id.btnSubmit);
         String num1s = num1.getText().toString();
         String num2s = num2.getText().toString();
         float n1 = Float.parseFloat(num1s);
         float n2 = Float.parseFloat(num2s);
 
-        if(((CheckBox)findViewById(R.id.cbSum)).isChecked())
-        result = n1+n2;
+        EditText resultField = (EditText) findViewById(R.id.tbxResult);
+
+        if(((RadioButton) findViewById(R.id.rbSum)).isChecked())
+            result = n1+n2;
+        else if(((RadioButton) findViewById(R.id.rbDifference)).isChecked())
+            result = n1-n2;
+        else if(((RadioButton) findViewById(R.id.rbProduct)).isChecked())
+            result = n1*n2;
+        else if(((RadioButton) findViewById(R.id.rbDivision)).isChecked())
+            result = n1/n2;
+        else
+            result=0;
 
         String msg = "The result is " + result;
-        Toast t = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
-        t.show();
+        resultField.setText(msg);
     }
+
+    public void onClick_checkBox(View view) {
+        final EditText p = (EditText) findViewById(R.id.tbxPrecision);
+        CheckBox cb = (CheckBox) view;
+
+        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                p.setEnabled(false);
+            }
+        });
+        if(!cb.isChecked())
+            p.setText("");
+
+        else
+            p.setText("");
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
