@@ -54,6 +54,22 @@ public class MainActivity extends Activity {
 
         String msg = "The result is " + result;
         resultField.setText(msg);
+
+        int precision;
+        EditText p = (EditText) findViewById(R.id.tbxPrecision);
+        if(!p.getText().toString().equals("")){
+            precision = Integer.parseInt(p.getText().toString());
+        } else {
+            precision = 0;
+        }
+
+        if( precision > 6 || precision < 0){
+            Toast t = Toast.makeText(getApplicationContext(), "Precision should be up to 6 decimal places", Toast.LENGTH_SHORT);
+            t.show();
+            p.setText("");
+        } else {
+            resultField.setText(msg);
+        }
     }
 
     public void onClick_checkBox(View view) {
