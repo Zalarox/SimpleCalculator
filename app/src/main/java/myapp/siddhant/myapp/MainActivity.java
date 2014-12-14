@@ -1,6 +1,7 @@
 package myapp.siddhant.myapp;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
@@ -45,26 +47,35 @@ public class MainActivity extends Activity {
         else
             result=0;
 
+        Switch s = (Switch) findViewById(R.id.switchInteger);
+        if(s.isChecked()) {
+            result = Math.round(result);
+        }
+
         String msg = "The result is " + result;
         resultField.setText(msg);
     }
 
     public void onClick_checkBox(View view) {
-        final EditText p = (EditText) findViewById(R.id.tbxPrecision);
+
+        EditText p = (EditText) findViewById(R.id.tbxPrecision);
         CheckBox cb = (CheckBox) view;
-
-        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                p.setEnabled(false);
-            }
-        });
-        if(!cb.isChecked())
+        if(cb.isChecked()){
+            p.setEnabled(true);
+            p.setFocusable(true);
+            p.setClickable(true);
+            p.setCursorVisible(true);
+            p.setFocusableInTouchMode(true);
+        } else {
+            p.setEnabled(false);
+            p.setFocusable(false);
+            p.setClickable(false);
+            p.setCursorVisible(false);
+            p.setFocusableInTouchMode(false);
             p.setText("");
-
-        else
-            p.setText("");
+        }
     }
+
 
 
 
