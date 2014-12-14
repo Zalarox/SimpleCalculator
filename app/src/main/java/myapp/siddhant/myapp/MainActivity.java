@@ -26,29 +26,36 @@ public class MainActivity extends Activity {
     }
 
     public void onClick_btnSubmit(View view) {
-        float result=0;
+        float result = 0;
         EditText num1 = (EditText) findViewById(R.id.numOne);
         EditText num2 = (EditText) findViewById(R.id.numTwo);
         String num1s = num1.getText().toString();
         String num2s = num2.getText().toString();
+
+        if (num1s.equals("") || num2s.equals("")) {
+            Toast error = Toast.makeText(getApplicationContext(), "One or more input fields empty", Toast.LENGTH_SHORT);
+            error.show();
+            return;
+        }
+
         float n1 = Float.parseFloat(num1s);
         float n2 = Float.parseFloat(num2s);
 
         EditText resultField = (EditText) findViewById(R.id.tbxResult);
 
-        if(((RadioButton) findViewById(R.id.rbSum)).isChecked())
-            result = n1+n2;
-        else if(((RadioButton) findViewById(R.id.rbDifference)).isChecked())
-            result = n1-n2;
-        else if(((RadioButton) findViewById(R.id.rbProduct)).isChecked())
-            result = n1*n2;
-        else if(((RadioButton) findViewById(R.id.rbDivision)).isChecked())
-            result = n1/n2;
+        if (((RadioButton) findViewById(R.id.rbSum)).isChecked())
+            result = n1 + n2;
+        else if (((RadioButton) findViewById(R.id.rbDifference)).isChecked())
+            result = n1 - n2;
+        else if (((RadioButton) findViewById(R.id.rbProduct)).isChecked())
+            result = n1 * n2;
+        else if (((RadioButton) findViewById(R.id.rbDivision)).isChecked())
+            result = n1 / n2;
         else
-            result=0;
+            result = 0;
 
         Switch s = (Switch) findViewById(R.id.switchInteger);
-        if(s.isChecked()) {
+        if (s.isChecked()) {
             result = Math.round(result);
         }
 
@@ -57,13 +64,13 @@ public class MainActivity extends Activity {
 
         int precision;
         EditText p = (EditText) findViewById(R.id.tbxPrecision);
-        if(!p.getText().toString().equals("")){
+        if (!p.getText().toString().equals("")) {
             precision = Integer.parseInt(p.getText().toString());
         } else {
             precision = 0;
         }
 
-        if( precision > 6 || precision < 0){
+        if (precision > 6 || precision < 0) {
             Toast t = Toast.makeText(getApplicationContext(), "Precision should be up to 6 decimal places", Toast.LENGTH_SHORT);
             t.show();
             p.setText("");
@@ -76,7 +83,7 @@ public class MainActivity extends Activity {
 
         EditText p = (EditText) findViewById(R.id.tbxPrecision);
         CheckBox cb = (CheckBox) view;
-        if(cb.isChecked()){
+        if (cb.isChecked()) {
             p.setEnabled(true);
             p.setFocusable(true);
             p.setClickable(true);
@@ -91,8 +98,6 @@ public class MainActivity extends Activity {
             p.setText("");
         }
     }
-
-
 
 
     @Override
